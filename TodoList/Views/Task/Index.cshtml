@@ -1,0 +1,55 @@
+﻿ @model List<MyTask>
+@{
+}
+
+
+<h1>ToDo List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">@Html.DisplayNameForInnerType((TodoList.Models.MyTask m) => m.Title)</th>
+            <th scope="col">@Html.DisplayNameForInnerType((TodoList.Models.MyTask m) => m.Description)</th>
+            <th scope="col">@Html.DisplayNameForInnerType((TodoList.Models.MyTask m) => m.TaskState)</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (MyTask m in Model)
+        {
+            <tr>
+                <th scope="row">@m.Id</th>
+                <td>@m.Title</td>
+                <td>@m.Description</td>
+                <td>@m.TaskState</td>
+                <td><a class="btn btn-outline-light btn-details" asp-action="UpdateState" asp-route-id="@m.Id">Update</a></td>
+                <td><a class="btn btn-outline-danger btn-danger btn-delete" asp-action="DeleteByID" asp-route-id="@m.Id">X</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <br><br><br>
+
+     <form id="rechercheForm" method="get" action="/Task/Add">
+        <h1>Add</h1>
+
+            <div class="mb-3">
+                <label for="Nom" class="form-label">Title</label>
+                <input type="text" class="form-control" id="Title" name="Title">
+            </div>
+            <div class="mb-3">
+                <label for="Poids" class="form-label">Description</label>
+                <input type="text" class="form-control" id="Description" name="Description">
+            </div>
+
+
+        <label for="id">New Task :</label>
+        <button class="btn btnoutline-light btn-details text-white" type="submit">Create</button>
+    </form>
+    <br>
+
+</div>
